@@ -105,25 +105,60 @@
 <body>
 
     <!-- NAVBAR -->
-    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-    <img src="images/logo.png" alt="Bhramara Logo" height="60"> 
-    <span class="ms-2" style="color: #15315E; font-weight: 800; font-size: 1.1rem;">BHRAMARA SOCIETY</span>
-</a>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
-                    <li class="nav-item"><a class="nav-link" href="sports.html">Sports</a></li>
-                    <li class="nav-item"><a class="nav-link" href="legal.html">Legal</a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-brand text-white active" href="admissions.html">Admissions</a></li>
-                </ul>
-            </div>
+<nav class="navbar navbar-expand-lg sticky-top shadow-sm bg-white">
+    <div class="container d-flex align-items-center justify-content-between">
+        
+        <!-- Logo and Title on the Left -->
+        <a class="navbar-brand d-flex align-items-center m-0" href="index.html" style="flex: 1;">
+            <img src="images/logo.png" alt="Bhramara Logo" height="45" class="img-fluid"> 
+            <span class="ms-2 brand-text" style="color: #15315E; font-weight: 800; line-height: 1.2;">BHRAMARA SOCIETY</span>
+        </a>
+
+        <!-- Hamburger Menu Button on the Right -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navigation Links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto text-center">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
+                <li class="nav-item"><a class="nav-link" href="sports.html">Sports</a></li>
+                <li class="nav-item"><a class="nav-link" href="legal.html">Legal</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="admissions.html">Admissions</a></li>
+            </ul>
         </div>
-    </nav>
+
+    </div>
+</nav>
+
+<!-- Add this CSS to your style.css or Head section -->
+<style>
+    /* This ensures the text stays small enough on mobile to fit on one line */
+    @media (max-width: 576px) {
+        .brand-text {
+            font-size: 0.85rem !important; /* Shrinks text on small mobiles */
+        }
+        .navbar-brand img {
+            height: 35px; /* Shrinks logo slightly on mobile */
+        }
+    }
+    
+    @media (min-width: 577px) and (max-width: 991px) {
+        .brand-text {
+            font-size: 1rem !important;
+        }
+    }
+
+    @media (min-width: 992px) {
+        .brand-text {
+            font-size: 1.2rem !important;
+        }
+    }
+</style>
 
     <div class="container admission-container">
         <div class="form-card" data-aos="fade-up">
