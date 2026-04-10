@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form | Bhramara Educational Society</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --brand-blue: #15315E;
+            --brand-orange: #E39219;
+        }
+        body { background-color: #f0f2f5; }
+
+        .admission-container {
+            max-width: 900px;
+            margin: 50px auto;
+        }
+        .form-card {
+            background: #fff;
+            border-radius: 20px;
+            border: none;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .form-header {
+            background: var(--brand-blue);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .form-header h2 { font-weight: 800; letter-spacing: 1px; }
+        
+        .form-body { padding: 40px; }
+        
+        .section-label {
+            font-weight: 700;
+            color: var(--brand-blue);
+            border-bottom: 2px solid var(--brand-orange);
+            display: inline-block;
+            margin-bottom: 25px;
+            padding-bottom: 5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .form-label { font-weight: 600; color: #444; font-size: 0.9rem; }
+        .required::after { content: " *"; color: red; }
+        
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            border: 1px solid #ddd;
+            transition: 0.3s;
+        }
+        .form-control:focus {
+            border-color: var(--brand-orange);
+            box-shadow: 0 0 0 0.25rem rgba(227, 146, 25, 0.1);
+        }
+
+        /* Description Box Styling */
+        textarea.form-control {
+            resize: none;
+        }
+
+        .submit-btn {
+            background: var(--brand-blue);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            width: 100%;
+            transition: 0.4s;
+            font-size: 1.1rem;
+        }
+        .submit-btn:hover {
+            background: var(--brand-orange);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(227, 146, 25, 0.3);
+            color: white;
+        }
+
+        /* Success Message Overlay */
+        #successOverlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(21, 49, 94, 0.9);
+            z-index: 9999;
+            color: white;
+            text-align: center;
+            padding-top: 15%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <img src="images\logo.png" alt="Bhramara Logo" height="70"> 
+                <span class="ms-2 d-none d-md-inline" style="color: #15315E; font-weight: 800;">BHRAMARA SOCIETY</span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="administration.html">Administration</a></li>
+                    <li class="nav-item"><a class="nav-link" href="sports.html">Sports</a></li>
+                    <li class="nav-item"><a class="nav-link" href="legal.html">Legal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link btn btn-brand text-white active" href="admissions.html">Admissions</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container admission-container">
+        <div class="form-card" data-aos="fade-up">
+            <div class="form-header">
+                <i class="fas fa-edit fa-3x mb-3"></i>
+                <h2>Admission Application</h2>
+                <p>Register your interest for Academic Year 2024-2025</p>
+            </div>
+            
+            <div class="form-body">
+                <form id="admissionForm" onsubmit="return handleFormSubmit(event)">
+                    
+                    <!-- Student Name -->
+                    <div class="section-label">1. Student Information</div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <label class="form-label required">First Name</label>
+                            <input type="text" class="form-control" id="fName" placeholder="Enter First Name" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Middle Name</label>
+                            <input type="text" class="form-control" id="mName" placeholder="Middle Name (Optional)">
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label required">Last Name</label>
+                            <input type="text" class="form-control" id="lName" placeholder="Enter Last Name" required>
+                        </div>
+                    </div>
+
+                    <!-- Parents Info -->
+                    <div class="section-label">2. Family Details</div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label required">Father's Full Name</label>
+                            <input type="text" class="form-control" id="fatherName" placeholder="Father's Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Mother's Full Name</label>
+                            <input type="text" class="form-control" id="motherName" placeholder="Mother's Name" required>
+                        </div>
+                    </div>
+
+                    <!-- Contact Details -->
+                    <div class="section-label">3. Contact Details</div>
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <label class="form-label required">Email Address</label>
+                            <input type="email" class="form-control" id="email" placeholder="example@mail.com" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label required">Mobile Number</label>
+                            <!-- Number only validation -->
+                            <input type="tel" class="form-control" id="mobile" maxlength="10" 
+                                   oninput="this.value = this.value.replace(/[^0-9]/g, '')" 
+                                   placeholder="10 Digit Number" required>
+                        </div>
+                    </div>
+
+                    <!-- Description / Additional Info -->
+                    <div class="section-label">4. Additional Information</div>
+                    <div class="row g-3 mb-5">
+                        <div class="col-12">
+                            <label class="form-label">Description / Remarks</label>
+                            <textarea class="form-control" rows="4" id="description" placeholder="Tell us more about your academic goals or any specific requirements (Optional)"></textarea>
+                            
+                        </div>
+                    </div>
+
+                    <!-- Submit -->
+                    <div class="text-center">
+                        <button type="submit" class="submit-btn">
+                            <i class="fas fa-check-circle me-2"></i> COMPLETE REGISTRATION
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Overlay -->
+    <div id="successOverlay">
+        <i class="fas fa-heart fa-5x mb-4 text-warning"></i>
+        <h1>Success!</h1>
+        <p class="lead">Your application has been logged.<br>Our counselor will reach out to you shortly.</p>
+        <button onclick="location.reload()" class="btn btn-outline-light mt-4 px-5 rounded-pill">Done</button>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <img src="images\logo.png" height="80" class="mb-3 bg-white rounded p-1">
+                    <p>Bhramara Educational Society is dedicated to excellence in education and character building.</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-brand-orange fw-bold mb-3">Contact</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Main Campus, Education Hub</p>
+                    <p><i class="fas fa-envelope me-2"></i> info@bhramara.edu</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-brand-orange fw-bold mb-3">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white text-decoration-none">About Society</a></li>
+                        <li><a href="contact.html" class="text-white text-decoration-none">Get in Touch</a></li>
+                        <li><a href="legal.html" class="text-white text-decoration-none">Legal Policies</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="mt-5">
+            <p class="text-center mb-0 pb-3">© 2024 Bhramara Educational Society. Empowering Minds Since 1990.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const mobile = document.getElementById('mobile').value;
+            if (mobile.length < 10) {
+                alert("Mobile number must be exactly 10 digits.");
+                return false;
+            }
+
+            // Show Success Overlay
+            document.getElementById('successOverlay').style.display = 'block';
+            return false;
+        }
+    </script>
+</body>
+</html>
